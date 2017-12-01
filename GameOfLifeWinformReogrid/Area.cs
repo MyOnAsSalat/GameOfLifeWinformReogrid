@@ -10,45 +10,82 @@ namespace GameOfLifeWinformReogrid
 {
     class Area
     {
-        bool[,] Cells;
-        public int Size { get { return Convert.ToInt32(Math.Sqrt(Cells.Length)); } }
-        //Конструктор поля с заданными клетками
+        protected bool[,] Cells;
+        public int Size { get { return Cells.GetLength(0) * Cells.GetLength(1); } }
+        public int SizeX { get { return Cells.GetLength(0); } }
+        public int SizeY { get { return Cells.GetLength(1); } }
+        //public Area() { throw  new Exception("Cells = null"); }
+        //Конструктор поля с заданными клетками      
         public Area(bool[,] cells)
         {
             this.Cells = cells;
         }
-        //Конструктор поля с заданным размером
+        //Конструктор квадратного поля с заданным размером
         public Area(int size)
         {
-            RandomCells(out Cells, size);
+            Cells = new bool[size, size];
+        }
+        //Конструктор прямоугольного поля
+        public Area(int sizeX, int sizeY)
+        {
+            Cells = new bool[sizeX, sizeY];
         }
         //индексатор для получения клетки из поля
         public bool this[int x, int y]
         {
             get
             {
-                return Cells[index(x), index(y)];
+                return Cells[indexX(x), indexY(y)];
             }
             set
             {
-                Cells[index(x), index(y)] = value;
+                Cells[indexX(x), indexY(y)] = value;
+            }
+        }
+        //Заполнение и очиста клеток
+        public void Fill()
+        {
+            for (int i = 0; i < SizeX; i++)
+            {
+                for (int f = 0; f < SizeY; f++)
+                {
+
+                    Cells[i, f] = true;
+                }
+            }
+        }
+        public void Clear()
+        {
+            for (int i = 0; i < SizeX; i++)
+            {
+                for (int f = 0; f < SizeY; f++)
+                {
+
+                    Cells[i, f] = false;
+                }
             }
         }
         // Получение цикличного индекса вычетом по модулю
-        private int index(int i)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public int indexX(int i)
         {
-            return i < 0 ? Size - Math.Abs(i % Size) : i % Size;
+            return i < 0 ? SizeX - Math.Abs(i % SizeX) : i % SizeX;
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public int indexY(int i)
+        {
+            return i < 0 ? SizeY - Math.Abs(i % SizeY) : i % SizeY;
         }
         //Заполнение поля рандомными клетками
-        void RandomCells(out bool[,] cells, int size)
+        public virtual void RandomCells()
         {
-            cells = new bool[size, size];
-            for (int i = 0; i < size; i++)
+            Cells = new bool[SizeX, SizeY];
+            for (int i = 0; i < SizeX; i++)
             {
-                for (int f = 0; f < size; f++)
+                for (int f = 0; f < SizeY; f++)
                 {
 
-                    cells[i, f] = rng();
+                    Cells[i, f] = rng();
                 }
             }
             bool rng()
@@ -63,29 +100,17 @@ namespace GameOfLifeWinformReogrid
                 return randomvalue % 2 == 0 ? true : false;
             }
         }
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void Next()
+        //следующая генерация      
+        public virtual void Next()
         {
-            bool[,] BufferCells = new bool[Size, Size];
-            for (int i = 0; i < Size; i++)
-            {
-                for (int f = 0; f < Size; f++)
-                {
-                    int sum = 0; //сумма клетом вокруг клетки по индексу i f
-                    sum = this[i - 1, f - 1] ? ++sum : sum;
-                    sum = this[i - 1, f + 1] ? ++sum : sum;
-                    sum = this[i - 1, f] ? ++sum : sum;
-                    sum = this[i + 1, f - 1] ? ++sum : sum;
-                    sum = this[i + 1, f + 1] ? ++sum : sum;
-                    sum = this[i + 1, f] ? ++sum : sum;
-                    sum = this[i, f - 1] ? ++sum : sum;
-                    sum = this[i, f + 1] ? ++sum : sum;
-                    if (sum == 2) { BufferCells[i, f] = this[i, f]; continue; }
-                    BufferCells[i, f] = (sum == 3) ? true : false;
-                }
-            }
-            Cells = BufferCells;
+            RandomCells();
         }
-
+        public virtual void Next(int n)
+        {
+            for (int i = 0; i < n; i++)
+            {
+                Next();
+            }
+        }
     }
 }

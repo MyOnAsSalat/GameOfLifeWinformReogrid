@@ -29,14 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.Table = new unvell.ReoGrid.ReoGridControl();
             this.button1 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.Graphic = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Graphic)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,13 +66,14 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(1049, 12);
+            this.button1.Location = new System.Drawing.Point(655, 12);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 22);
+            this.button1.Size = new System.Drawing.Size(113, 22);
             this.button1.TabIndex = 1;
-            this.button1.Text = "next";
+            this.button1.Text = "StartRandom";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.MouseEnter += new System.EventHandler(this.button1_MouseEnter);
             // 
             // timer1
             // 
@@ -80,7 +83,7 @@
             // textBox1
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(954, 12);
+            this.textBox1.Location = new System.Drawing.Point(560, 12);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(89, 22);
             this.textBox1.TabIndex = 2;
@@ -98,36 +101,59 @@
             this.Graphic.BorderSkin.BackSecondaryColor = System.Drawing.Color.Black;
             this.Graphic.BorderSkin.BorderColor = System.Drawing.Color.Transparent;
             this.Graphic.BorderSkin.PageColor = System.Drawing.Color.Transparent;
-            chartArea2.BackColor = System.Drawing.Color.Black;
-            chartArea2.Name = "ChartArea1";
-            this.Graphic.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.Graphic.Legends.Add(legend2);
+            chartArea1.BackColor = System.Drawing.Color.Black;
+            chartArea1.Name = "ChartArea1";
+            this.Graphic.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.Graphic.Legends.Add(legend1);
             this.Graphic.Location = new System.Drawing.Point(560, 54);
             this.Graphic.Margin = new System.Windows.Forms.Padding(0);
             this.Graphic.Name = "Graphic";
             this.Graphic.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series2.BackImageTransparentColor = System.Drawing.Color.Black;
-            series2.BackSecondaryColor = System.Drawing.Color.Black;
-            series2.BorderColor = System.Drawing.Color.Black;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Color = System.Drawing.Color.Lime;
-            series2.LabelBackColor = System.Drawing.Color.Black;
-            series2.LabelBorderColor = System.Drawing.Color.Black;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            series2.ShadowColor = System.Drawing.Color.Black;
-            this.Graphic.Series.Add(series2);
+            series1.BackImageTransparentColor = System.Drawing.Color.Black;
+            series1.BackSecondaryColor = System.Drawing.Color.Black;
+            series1.BorderColor = System.Drawing.Color.Black;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Color = System.Drawing.Color.Lime;
+            series1.LabelBackColor = System.Drawing.Color.Black;
+            series1.LabelBorderColor = System.Drawing.Color.Black;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            series1.ShadowColor = System.Drawing.Color.Black;
+            this.Graphic.Series.Add(series1);
             this.Graphic.Size = new System.Drawing.Size(734, 439);
             this.Graphic.TabIndex = 3;
             this.Graphic.Text = "chart1";
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Location = new System.Drawing.Point(774, 12);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(113, 22);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "ClearEdite";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.Location = new System.Drawing.Point(893, 12);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(113, 22);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "StartEdite";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1151, 722);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.Graphic);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
@@ -148,6 +174,8 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.DataVisualization.Charting.Chart Graphic;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }
 
